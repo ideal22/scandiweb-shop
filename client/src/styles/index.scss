@@ -1,0 +1,258 @@
+@import 'vars.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button,
+textarea,
+select {
+  outline: none;
+  border: none;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+body {
+  margin: 0;
+  font-family: "Raleway";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+  }
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 100px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.btn {
+  border: 1px solid $text-color;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  background: $white;
+  transition: 0.2s;
+  color: $text-color;
+
+
+  &:hover {
+    background-color: $text-color;
+    color: $white;
+  }
+
+  &.primary {
+    background: $primary-color;
+    border-color: $primary-color;
+    color: $white;
+
+    &:hover {
+      background-color: $white;
+      color: $primary-color;
+    }
+  }
+}
+
+.cart__item {
+  position: relative;
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(209, 209, 209);
+  }
+
+  &:hover {
+    .remove-btn {
+      opacity: 1;
+    }
+  }
+
+  .remove-btn {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    padding: 5px;
+    background: none;
+    color: rgb(238, 62, 62);
+    border: 1px solid rgb(238, 62, 62);
+    cursor: pointer;
+    transition: .3s;
+    opacity: 0;
+
+    &:hover {
+      color: $white;
+      background: rgb(238, 62, 62);
+    }
+  }
+
+  display: flex;
+  justify-content: space-between;
+
+  &-desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    padding-right: 10px;
+
+    .item__title {
+      max-width: 136px;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 5px;
+
+    }
+
+    .item__name {
+      max-width: 136px;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 25.6px;
+      margin-bottom: 5px;
+    }
+
+    .item__price {
+      font-size: 16px;
+      line-height: 25.6px;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+
+    .item__params {
+      font-size: 13px;
+
+      li {
+
+        margin-bottom: 4px;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        span:not(.color) {
+          font-size: 12px;
+          font-weight: 500;
+          padding: 2px;
+          background: $text-color;
+          color: $white;
+          align-self: center;
+        }
+
+        span.color {
+          display: inline-block;
+          border-radius: 50%;
+          width: 12px;
+          height: 12px;
+        }
+      }
+    }
+
+  }
+
+  &-img {
+    display: flex;
+
+    .item__amount {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      margin-right: 10px;
+      align-items: center;
+
+      span {
+        font-weight: 500;
+        font-size: 16px;
+      }
+
+      button {
+        height: 24px;
+        width: 24px;
+
+        &:disabled {
+          pointer-events: none;
+          opacity: 0.3;
+
+        }
+
+      }
+    }
+
+    .item__img {
+      height: 100%;
+      width: 140px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        max-height: 150px;
+        object-fit: contain
+      }
+    }
+  }
+
+
+}
+
+.spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%)
+}
+
+
+
+@import "nav";
+@import "home";
+@import "product-block";
+@import "product-page";
+@import "cart-page";

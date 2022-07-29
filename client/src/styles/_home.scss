@@ -1,0 +1,43 @@
+.home {
+
+    &__category {
+        &-name {
+            font-size: 42px;
+            line-height: 40px;
+            font-weight: 400;
+            color: $text-color;
+            margin-bottom: 100px;
+            text-transform: capitalize;
+        }
+    }
+
+    &__products {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 20px;
+
+        &:after {
+            content: ''
+            ;
+            flex: auto;
+        }
+    }
+
+}
+
+.add-notification {
+    position: fixed;
+    bottom: 50px;
+    right: -300px;
+    background: $primary-color;
+    padding: 15px 40px;
+    font-size: 20px;
+    color: $white;
+    pointer-events: none;
+    transition: .3s;
+
+    &.active {
+        right: 40px;
+    }
+}

@@ -1,0 +1,273 @@
+.nav {
+    height: 80px;
+    margin-bottom: 80px;
+    transition: 0.3s;
+
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+    }
+
+    &__categories {
+        display: flex;
+        height: 100%;
+
+        &-item {
+            display: flex;
+            height: 100%;
+            position: relative;
+            align-items: center;
+
+            a {
+                padding: 0 16px;
+                color: $text-color;
+                text-transform: uppercase;
+                font-weight: 400;
+
+            }
+
+
+            &.active {
+
+
+                a {
+                    color: $primary-color;
+                }
+
+                &::after {
+                    content: '';
+                    display: block;
+                    height: 2px;
+                    width: 100%;
+                    background: $primary-color;
+                    position: absolute;
+                    bottom: 0;
+
+                }
+            }
+        }
+    }
+
+    &__checkout {
+        cursor: pointer;
+    }
+
+    &__control {
+        display: flex;
+    }
+
+    &__cart {
+        cursor: pointer;
+        margin-left: 22px;
+        position: relative;
+
+        &-badge {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background-color: $text-color;
+            top: -8px;
+            right: -13px;
+            font-size: 14px;
+            font-weight: 700;
+            text-align: center;
+            color: $white;
+        }
+
+        .cart-ico {
+            height: 20px;
+            width: 20px;
+
+            path {
+                fill: $text-color;
+            }
+
+
+        }
+
+        &-block {
+            background-color: $white;
+            position: absolute;
+            right: 0;
+            top: 52px;
+            width: 350px;
+            padding: 8px 16px 20px;
+            cursor: auto;
+            z-index: 99999;
+
+            transform: translateY(-30%);
+            opacity: 0;
+            visibility: hidden;
+            transition: .3s;
+
+            .cart__empty {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+
+                p {
+                    font-size: 20px;
+                }
+
+                img {
+                    width: 100%;
+
+                }
+            }
+
+            &.active {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+
+            }
+
+            h5 {
+                margin-bottom: 23px;
+                font-weight: 700;
+                font-size: 16px;
+                line-height: 25.6px;
+
+                span {
+                    font-weight: 500;
+
+                }
+            }
+
+            .cart__items {
+                max-height: 502px;
+                overflow-y: auto;
+                margin-bottom: 40px;
+
+            }
+
+            .cart__total {
+                h3 {
+                    font-weight: 500;
+                    font-family: 'Roboto';
+                    font-size: 16px;
+                    line-height: 18px;
+                    display: flex;
+                    justify-content: space-between;
+
+                    span {
+                        font-weight: 700;
+                        font-family: "Raleway";
+                    }
+
+                    margin-bottom: 37px;
+                }
+
+                .cart__btns {
+                    display: flex;
+                    justify-content: space-between;
+
+                    .btn {
+                        font-size: 14px;
+                        text-transform: uppercase;
+                        line-height: 16.8px;
+                        font-weight: 600;
+                        height: 43px;
+                        width: 140px;
+
+                        &:disabled {
+                            opacity: 0.5;
+                            pointer-events: none;
+                        }
+                    }
+                }
+            }
+
+
+            ::-webkit-scrollbar {
+                width: 5px;
+            }
+
+            ::-webkit-scrollbar-track {
+                background: #f1f1f1;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: #888;
+            }
+        }
+
+    }
+
+    &__currency {
+        cursor: pointer;
+        position: relative;
+        font-weight: 500;
+
+        &-label {
+            display: flex;
+            align-items: center;
+
+
+            &.active {
+                img {
+                    transform: rotate(180deg);
+                }
+            }
+
+            img {
+                transition: .3s;
+                margin-left: 10px;
+            }
+        }
+
+        &-items {
+            position: absolute;
+            white-space: nowrap;
+            padding: 10px 0;
+            box-shadow: 0px 0px 8px -2px rgba(34, 60, 80, 0.12);
+            margin-top: 10px;
+            transform: translateY(-30%);
+            visibility: hidden;
+            opacity: 0;
+            transition: .3s;
+
+            &.active {
+                visibility: visible;
+                opacity: 1;
+                transform: translateY(0);
+
+            }
+
+            li {
+                background: $white;
+                padding: 10px 38px 10px 20px;
+                text-transform: uppercase;
+
+                &:hover {
+                    background: $white-hover;
+                }
+
+            }
+        }
+    }
+
+    &.cart-opened {
+
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            background: rgba(57, 55, 72, 0.22);
+            z-index: 999;
+            overflow: hidden;
+
+        }
+    }
+}

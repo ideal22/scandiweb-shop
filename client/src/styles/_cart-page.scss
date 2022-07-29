@@ -1,0 +1,117 @@
+.cart {
+    padding-bottom: 50px;
+
+    h1 {
+        margin-bottom: 60px;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 32px;
+        color: $text-color;
+    }
+
+    .cart__empty {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        p {
+            font-size: 20px;
+        }
+
+        button {
+            margin-top: 15px;
+            background-color: transparent;
+            padding: 10px 15px;
+            border: 1px solid $primary-color;
+            font-size: 25px;
+            text-transform: uppercase;
+            color: $primary-color;
+            cursor: pointer;
+            transition: .3s;
+
+            &:hover {
+                background-color: $primary-color;
+
+                color: $white;
+
+            }
+        }
+
+    }
+
+    .cart__item {
+        position: relative;
+        padding: 20px 0;
+        margin-bottom: 0;
+
+        .remove-btn {
+            top: 15px;
+            transform: scale(1.1);
+        }
+
+        &-desc {
+
+            .item__params {
+                display: flex;
+
+                li {
+                    font-size: 16px;
+                    margin-right: 30px;
+                    align-items: center;
+
+                    span {
+                        margin-left: 5px;
+                        padding: 5px;
+
+                        &.color {
+                            width: 20px;
+                            height: 20px;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        .item__title {
+            font-size: 17px;
+            font-weight: 600;
+            max-width: none;
+        }
+
+        .item__name {
+            font-size: 30px;
+            font-weight: 300;
+            max-width: none;
+        }
+
+        .item__price {
+            font-weight: 700;
+            font-size: 24px;
+            margin: 12px 0;
+        }
+
+        .btn {
+            width: 63px;
+            height: 45px;
+        }
+
+        .item__amount {
+            font-size: 24px;
+            font-weight: 500;
+
+            span {
+                font-size: 20px;
+            }
+
+            .btn {
+                height: 45px;
+                width: 45px;
+                font-size: 25px;
+                font-weight: 300;
+            }
+        }
+    }
+
+}
