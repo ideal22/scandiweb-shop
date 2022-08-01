@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 export default class ProductParams extends Component {
   render() {
     const { product } = this.props
+
     return (
       <div className="product__params">
         {product.attributes &&

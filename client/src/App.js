@@ -1,9 +1,16 @@
 import React from 'react'
 import AppRoutes from './AppRoutes'
+import ErrorBoundary from './Components/ErrorBoundary'
+import Notification from './UI/Notification'
 
 class App extends React.Component {
   render() {
-    return <AppRoutes />
+    return (
+      <ErrorBoundary>
+        <AppRoutes />
+        <Notification />
+      </ErrorBoundary>
+    )
   }
 }
 

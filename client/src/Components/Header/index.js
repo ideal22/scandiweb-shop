@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import headerCheckout from '../../assets/header-checkout-icon.png'
 import withRouter from '../../shared/withRouter'
 import CartModal from '../CartModal'
-import CategoriesMenuList from '../CategoriesMenuList'
+import CategoryMenuList from './CategoryMenuList'
 import CurrencyDropDown from '../CurrencyDropDown'
 
 class Header extends React.Component {
@@ -12,7 +12,7 @@ class Header extends React.Component {
     return (
       <nav className={`nav ${this.props.isModalOpened ? 'cart-opened' : ''}`}>
         <div className="nav__container">
-          <CategoriesMenuList history={this.props.history} />
+          <CategoryMenuList history={this.props.history} />
           <div className="nav__checkout">
             <Link to="/">
               <img src={headerCheckout} alt="" />

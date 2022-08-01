@@ -5,7 +5,6 @@ import ProductInfo from '../../Components/ProductDescriptionPage/ProductInfo'
 import ProductThumbs from '../../Components/ProductDescriptionPage/ProductThumbs'
 import withRouter from '../../shared/withRouter'
 import { fetchProductById } from '../../store/slices/productByIdSlice'
-import Notification from '../../UI/Notification'
 
 class ProductPage extends React.Component {
   constructor(props) {
@@ -34,14 +33,13 @@ class ProductPage extends React.Component {
   render() {
     const { product, selectedCurrency } = this.props
     return (
-      <div className="container product">
+      <div className="product">
         <ProductThumbs
           gallery={product.gallery}
           setSelectedThumb={this.setSelectedThumb}
         />
         <ProductImage src={this.isNotSelectedThumb()} />
         <ProductInfo product={product} selectedCurrency={selectedCurrency} />
-        {/* <Notification /> */}
       </div>
     )
   }

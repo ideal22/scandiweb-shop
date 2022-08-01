@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import ProductList from '../../Components/ProductList'
+import ProductCategoryList from '../../Components/ProductCategoryList/ProductCategoryList'
 import { CATEGORIES } from '../../shared/constants'
 import withRouter from '../../shared/withRouter'
 import { fetchProductsByCategory } from '../../store/slices/productsByCategorySlice'
@@ -30,7 +30,7 @@ class CategoryPage extends React.Component {
         <h1 className="home__category-name">
           {CATEGORIES[this.props.selectedCategory]}
         </h1>
-        <ProductList />
+        <ProductCategoryList />
       </div>
     )
   }

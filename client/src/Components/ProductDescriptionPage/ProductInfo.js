@@ -8,6 +8,7 @@ export default class ProductInfo extends Component {
     const { product, selectedCurrency } = this.props
     const description =
       product.description !== undefined && parse(product.description)
+
     return (
       <div className="product__info">
         <h3 className="product__info-subtitle">{product.brand}</h3>

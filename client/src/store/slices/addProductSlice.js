@@ -6,16 +6,18 @@ const addProductSlice = createSlice({
     addedProducts: [],
     totalCount: 0,
     totalAmount: 0,
+    isProductAdded: false,
   },
   reducers: {
     setAddedProducts(state, action) {
+      console.log(action, 'action add')
       const isProductAlreadyExist = state.addedProducts.some(
-        (product) => product.id === action.payload.id,
+        (product) => product.productId === action.payload.productId,
       )
       if (isProductAlreadyExist) {
         state.addedProducts = state.addedProducts.map((product) => {
-          if (product.id === action.payload.id) {
-            return { ...product, count: product.count + 1 }
+          if (product.productId === action.payload.productId) {
+            return { ...product, productCount: product.productCount + 1 }
           }
           return product
         })
@@ -25,37 +27,41 @@ const addProductSlice = createSlice({
     },
     getTotalCount(state) {
       state.totalCount = state.addedProducts.reduce((acc, val) => {
-        return acc + val.count
+        return acc + val.productCount
       }, 0)
     },
     getTotalAmount(state, action) {
       state.totalAmount = state.addedProducts.reduce((acc, val) => {
-        const { amount } = val.prices.find(
+        const { amount } = val.productPrices.find(
           (pr) => pr.currency.label === action.payload,
         )
-        return acc + amount * val.count
+        return acc + amount * val.productCount
       }, 0)
     },
     deleteProduct(state, action) {
       state.addedProducts = state.addedProducts.filter(
-        (product) => product.id !== action.payload,
+        (product) => product.productId !== action.payload,
       )
     },
     increaseProductCount(state, action) {
       state.addedProducts = state.addedProducts.map((product) => {
-        if (product.id === action.payload) {
-          return { ...product, count: product.count + 1 }
+        if (product.productId === action.payload) {
+          return { ...product, productCount: product.productCount + 1 }
         }
         return product
       })
     },
     decreaseProductCount(state, action) {
       state.addedProducts = state.addedProducts.map((product) => {
-        if (product.id === action.payload) {
-          return { ...product, count: product.count - 1 }
+        if (product.productId === action.payload) {
+          return { ...product, productCount: product.productCount - 1 }
         }
         return product
       })
+    },
+
+    setIsProductAdded(state, action) {
+      state.isProductAdded = action.payload
     },
   },
 })
@@ -67,5 +73,6 @@ export const {
   deleteProduct,
   increaseProductCount,
   decreaseProductCount,
+  setIsProductAdded,
 } = addProductSlice.actions
 export default addProductSlice.reducer

@@ -52,6 +52,10 @@
 
     &__checkout {
         cursor: pointer;
+        position: absolute;
+        top: 40px;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 
     &__control {

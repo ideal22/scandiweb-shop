@@ -249,6 +249,21 @@ code {
   transform: translateX(-50%) translateY(-50%)
 }
 
+.error-boundary {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h2 {
+    margin-bottom: 20px
+  }
+  details {
+    cursor: pointer;
+  }
+}
+
 
 
 @import "nav";

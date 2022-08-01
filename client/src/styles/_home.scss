@@ -26,14 +26,14 @@
 
 }
 
-.add-notification {
+.notification-container {
     position: fixed;
     bottom: 50px;
-    right: -300px;
-    background: $primary-color;
+    right: -400px;
+    border: 1px solid red;
     padding: 15px 40px;
-    font-size: 20px;
-    color: $white;
+    font-size: 14px;
+    color: red;
     pointer-events: none;
     transition: .3s;
 

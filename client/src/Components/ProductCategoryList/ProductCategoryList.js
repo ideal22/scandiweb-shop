@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import ProductListItem from '../ProductListItem'
+import ProductCategoryListItem from './ProductCategoryListItem'
 
-class ProductList extends Component {
+class ProductCategoryList extends Component {
   render() {
     const { products, selectedCurrency } = this.props
     return (
       <div className="home__products">
         {products.map((product) => (
-          <ProductListItem
+          <ProductCategoryListItem
             key={product.id}
             product={product}
             selectedCurrency={selectedCurrency}
@@ -23,4 +23,4 @@ const mapStateToProps = (state) => ({
   selectedCurrency: state.currencies.selectedCurrency,
 })
 
-export default connect(mapStateToProps)(ProductList)
+export default connect(mapStateToProps)(ProductCategoryList)

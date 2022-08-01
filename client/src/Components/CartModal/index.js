@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import CartIcon from '../../assets/CartIcon'
 import { toggleModal } from '../../store/slices/modalSlice'
 import CartModalProductList from './CartModalProductList'
-// import emptyCartImg from '../../assets/'
 
 class CartModal extends Component {
   constructor(props) {
