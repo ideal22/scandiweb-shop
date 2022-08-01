@@ -16,10 +16,13 @@ class AddedProductListItemDetails extends Component {
     getTotalAmount(selectedCurrency.label)
   }
 
-  componentDidUpdate() {
-    const { getTotalAmount, getTotalCount, selectedCurrency } = this.props
-    getTotalCount()
-    getTotalAmount(selectedCurrency.label)
+  componentDidUpdate(prevProps) {
+    const { getTotalAmount, getTotalCount, selectedCurrency, product } =
+      this.props
+    if (prevProps.product.productCount !== product.productCount) {
+      getTotalCount()
+      getTotalAmount(selectedCurrency.label)
+    }
   }
   render() {
     const {
@@ -41,7 +44,6 @@ class AddedProductListItemDetails extends Component {
         </button>
 
         <ProductDetails product={product} selectedCurrency={selectedCurrency} />
-        {/* <span className="item__params">{product.items[0].param}</span> */}
         <div className="cart__item-img">
           <div className="item__amount">
             <button
@@ -72,8 +74,12 @@ class AddedProductListItemDetails extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  deleteProduct: (id) => dispatch(deleteProduct(id)),
+const mapDispatchToProps = (dispatch, { selectedCurrency: { label } }) => ({
+  deleteProduct: (id) => {
+    dispatch(deleteProduct(id))
+    dispatch(getTotalCount())
+    dispatch(getTotalAmount(label))
+  },
   increaseProduct: (id) => dispatch(increaseProductCount(id)),
   decreaseProduct: (id) => dispatch(decreaseProductCount(id)),
   getTotalCount: () => dispatch(getTotalCount()),

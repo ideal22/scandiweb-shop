@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
 
+const attrsSet = new Set()
+
 export default class ProductParams extends Component {
+  onSelectedAttrs = (attrs) => {
+    attrsSet.add(attrs)
+    this.props.setSelectedAttrs([...attrsSet])
+  }
   render() {
-    const { product } = this.props
+    const { product, selectedAttrs } = this.props
 
     return (
       <div className="product__params">
@@ -16,23 +22,22 @@ export default class ProductParams extends Component {
                   <div className="product__params-btns">
                     {attribute.items.map((item, idx) => (
                       <button
-                        // className={`btn ${
-                        //   this.props.activeParams.find(
-                        //     (param) =>
-                        //       param.paramName === attribute.name &&
-                        //       param.paramValue === item.value,
-                        //   )
-                        //     ? 'selected'
-                        //     : ''
-                        // }`}
-                        className="btn"
+                        className={`btn ${
+                          selectedAttrs.some(
+                            (attr) =>
+                              attr.attributeName === attribute.name &&
+                              attr.attributeItemValue === item.value,
+                          )
+                            ? 'selected'
+                            : ''
+                        }`}
                         key={idx}
-                        // onClick={() => {
-                        //   setParams({
-                        //     paramName: attribute.name,
-                        //     paramValue: item.value,
-                        //   })
-                        // }}
+                        onClick={() => {
+                          this.onSelectedAttrs({
+                            attributeName: attribute.name,
+                            attributeItemValue: item.value,
+                          })
+                        }}
                       >
                         {item.value}
                       </button>
@@ -46,22 +51,22 @@ export default class ProductParams extends Component {
                           style={{
                             backgroundColor: item.value,
                           }}
-                          // className={`swatch-btn $ ${
-                          //   this.props.activeParams.find(
-                          //     (param) =>
-                          //       param.paramName === attribute.name &&
-                          //       param.paramValue === item.value,
-                          //   )
-                          //     ? 'selected'
-                          //     : ''
-                          // }`}
+                          className={`swatch-btn $ ${
+                            selectedAttrs.some(
+                              (attr) =>
+                                attr.attributeName === attribute.name &&
+                                attr.attributeItemValue === item.value,
+                            )
+                              ? 'selected'
+                              : ''
+                          }`}
                           key={idx}
-                          // onClick={() => {
-                          //   setParams({
-                          //     paramName: attribute.name,
-                          //     paramValue: item.value,
-                          //   })
-                          // }}
+                          onClick={() => {
+                            this.onSelectedAttrs({
+                              attributeName: attribute.name,
+                              attributeItemValue: item.value,
+                            })
+                          }}
                         ></button>
                       )
                     })}

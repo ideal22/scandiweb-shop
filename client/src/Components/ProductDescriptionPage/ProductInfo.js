@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
 import parse from 'html-react-parser'
-import ProductParams from './ProductParams'
-import ProductPrice from './ProductPrice'
+import { generateProductDataToAdd } from '../../shared/helper'
 
 export default class ProductInfo extends Component {
+  addProduct = () => {
+    const data = generateProductDataToAdd(
+      this.props.product,
+      this.props.selectedAttrs,
+    )
+    this.props.setAddedProducts(data)
+  }
   render() {
-    const { product, selectedCurrency } = this.props
+    const { product, children } = this.props
     const description =
       product.description !== undefined && parse(product.description)
 
@@ -13,24 +19,12 @@ export default class ProductInfo extends Component {
       <div className="product__info">
         <h3 className="product__info-subtitle">{product.brand}</h3>
         <h2 className="product__info-title">{product.name}</h2>
-        <ProductParams product={product} />
-        <ProductPrice
-          prices={product.prices}
-          selectedCurrency={selectedCurrency}
-        />
+        {/* To Avoid Props Drilling */}
+        {children}
         <button
           className="btn primary add-btn"
           disabled={!product.inStock}
-          // onClick={() => {
-          //   addCartItem({
-          //     id: product.id,
-          //     itemName: product.name,
-          //     itemBrand: product.brand,
-          //     itemGallery: product.gallery,
-          //     itemPrice: product.prices,
-          //     params: [...this.props.activeParams],
-          //   })
-          // }}
+          onClick={() => this.addProduct()}
         >
           {product.inStock ? 'ADD TO CART' : 'OUT OF STOCK'}
         </button>

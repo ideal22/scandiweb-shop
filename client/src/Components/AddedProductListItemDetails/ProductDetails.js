@@ -35,8 +35,6 @@ export default class ProductDetails extends Component {
             )
           })}
         </ul>
-
-        {/* <span className="item__params">{this.props.item.items[0].param}</span> */}
       </div>
     )
   }

@@ -2,8 +2,15 @@ import React from 'react'
 import { connect } from 'react-redux'
 import ProductImage from '../../Components/ProductDescriptionPage/ProductImage'
 import ProductInfo from '../../Components/ProductDescriptionPage/ProductInfo'
+import ProductParams from '../../Components/ProductDescriptionPage/ProductParams'
+import ProductPrice from '../../Components/ProductDescriptionPage/ProductPrice'
 import ProductThumbs from '../../Components/ProductDescriptionPage/ProductThumbs'
 import withRouter from '../../shared/withRouter'
+import {
+  clearSelectedAttrs,
+  setAddedProducts,
+  setSelectedAttrs,
+} from '../../store/slices/addProductSlice'
 import { fetchProductById } from '../../store/slices/productByIdSlice'
 
 class ProductPage extends React.Component {
@@ -21,7 +28,11 @@ class ProductPage extends React.Component {
     fetchProductById(params.id)
   }
 
-  isNotSelectedThumb = () =>
+  componentWillUnmount() {
+    this.props.clearSelectedAttrs()
+  }
+
+  isThumbSelected = () =>
     !this.state.selectedThumb
       ? Array.isArray(this.props.product.gallery)
         ? this.props.product.gallery[0]
@@ -31,15 +42,38 @@ class ProductPage extends React.Component {
   setSelectedThumb = (thumb) => this.setState({ selectedThumb: thumb })
 
   render() {
-    const { product, selectedCurrency } = this.props
+    const {
+      product,
+      selectedCurrency,
+      clearSelectedAttrs,
+      setSelectedAttrs,
+      selectedAttrs,
+      setAddedProducts,
+    } = this.props
     return (
       <div className="product">
         <ProductThumbs
           gallery={product.gallery}
           setSelectedThumb={this.setSelectedThumb}
         />
-        <ProductImage src={this.isNotSelectedThumb()} />
-        <ProductInfo product={product} selectedCurrency={selectedCurrency} />
+        <ProductImage src={this.isThumbSelected()} />
+        <ProductInfo
+          product={product}
+          selectedCurrency={selectedCurrency}
+          clearSelectedAttrs={clearSelectedAttrs}
+          selectedAttrs={selectedAttrs}
+          setAddedProducts={setAddedProducts}
+        >
+          <ProductParams
+            product={product}
+            setSelectedAttrs={setSelectedAttrs}
+            selectedAttrs={selectedAttrs}
+          />
+          <ProductPrice
+            prices={product.prices}
+            selectedCurrency={selectedCurrency}
+          />
+        </ProductInfo>
       </div>
     )
   }
@@ -48,9 +82,13 @@ class ProductPage extends React.Component {
 const mapStateToProps = (state) => ({
   product: state.product.product,
   selectedCurrency: state.currencies.selectedCurrency,
+  selectedAttrs: state.addedProducts.selectedAttrs,
 })
 const mapDispatchToProps = (dispatch) => ({
   fetchProductById: (id) => dispatch(fetchProductById(id)),
+  setSelectedAttrs: (attrs) => dispatch(setSelectedAttrs(attrs)),
+  clearSelectedAttrs: () => dispatch(clearSelectedAttrs()),
+  setAddedProducts: (product) => dispatch(setAddedProducts(product)),
 })
 
 export default withRouter(

@@ -115,3 +115,26 @@
     }
 
 }
+
+.product-order {
+  margin-top: 30px;
+  
+  .order__details-title {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    color: #1D1F22;
+  }
+
+  .order__details-title + .order__details-title {
+    margin-top: 8px;
+  }
+
+  .order__details-amount {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 24px;
+    color: #1D1F22;
+    margin-left: 10px;
+  }
+}

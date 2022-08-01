@@ -25,7 +25,7 @@ const productByIdSlice = createSlice({
   },
   reducers: {
     setProduct(state, action) {
-      state.product = action.payload
+      state.product = { ...action.payload, count: 1 }
     },
   },
 })

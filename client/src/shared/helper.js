@@ -8,12 +8,18 @@ const getDefaultProductAttrs = (attrs) =>
     attributeItemValue: attr.items[0].value,
   }))
 
+const getId = (id, name) => {
+  return `${id}-${name}`
+}
+
 export const generateProductDataToAdd = (product, selectedAttrs) => ({
-  productId: product.id,
+  productId: !selectedAttrs ? product.id : getId(product.id, product.name),
   productName: product.name,
   productBrand: product.brand,
   productCount: product.count,
   productGallery: product.gallery,
   productPrices: product.prices,
-  productAttrs: selectedAttrs || getDefaultProductAttrs(product.attributes),
+  productAttrs: !selectedAttrs
+    ? getDefaultProductAttrs(product.attributes)
+    : selectedAttrs,
 })

@@ -112,11 +112,10 @@
                 height: 35px;
                 width: 35px;
                 margin-right: 10px;
-                border-radius: 50%;
                 cursor: pointer;
                 transition: .3s;
                 border: 2px solid transparent;
-
+                margin-bottom: 10px;
 
                 &.selected {
                     border: 2px solid red;

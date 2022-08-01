@@ -7,10 +7,10 @@ const addProductSlice = createSlice({
     totalCount: 0,
     totalAmount: 0,
     isProductAdded: false,
+    selectedAttrs: [],
   },
   reducers: {
     setAddedProducts(state, action) {
-      console.log(action, 'action add')
       const isProductAlreadyExist = state.addedProducts.some(
         (product) => product.productId === action.payload.productId,
       )
@@ -63,6 +63,19 @@ const addProductSlice = createSlice({
     setIsProductAdded(state, action) {
       state.isProductAdded = action.payload
     },
+
+    setSelectedAttrs(state, action) {
+      const uniqueAttrs = [
+        ...new Map(
+          action.payload.map((item) => [item.attributeName, item]),
+        ).values(),
+      ]
+      state.selectedAttrs = uniqueAttrs
+    },
+
+    clearSelectedAttrs(state) {
+      state.selectedAttrs = []
+    },
   },
 })
 
@@ -74,5 +87,7 @@ export const {
   increaseProductCount,
   decreaseProductCount,
   setIsProductAdded,
+  setSelectedAttrs,
+  clearSelectedAttrs,
 } = addProductSlice.actions
 export default addProductSlice.reducer
