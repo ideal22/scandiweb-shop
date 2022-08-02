@@ -11,7 +11,10 @@ import {
 
 class ProductListItem extends Component {
   addProduct = () => {
-    const data = generateProductDataToAdd(this.props.product)
+    const data = generateProductDataToAdd(
+      this.props.product,
+      this.props.selectedAttrs,
+    )
     this.props.addProduct(data)
   }
 

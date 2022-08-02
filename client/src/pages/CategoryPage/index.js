@@ -2,26 +2,16 @@ import React from 'react'
 import { connect } from 'react-redux'
 import ProductCategoryList from '../../Components/ProductCategoryList/ProductCategoryList'
 import { CATEGORIES } from '../../shared/constants'
-import withRouter from '../../shared/withRouter'
 import { fetchProductsByCategory } from '../../store/slices/productsByCategorySlice'
 
 class CategoryPage extends React.Component {
   componentDidMount() {
-    const {
-      fetchProducts,
-      history: { params },
-    } = this.props
-    fetchProducts(params.category)
+    this.props.fetchProducts(this.props.selectedCategory)
   }
 
   componentDidUpdate(prevProps) {
-    const {
-      fetchProducts,
-      history: { params },
-    } = this.props
-
-    if (prevProps.history.params.category !== params.category) {
-      fetchProducts(params.category)
+    if (prevProps.selectedCategory !== this.props.selectedCategory) {
+      this.props.fetchProducts(this.props.selectedCategory)
     }
   }
   render() {
@@ -44,6 +34,4 @@ const mapDispatchToProps = (dispatch) => ({
   fetchProducts: (category) => dispatch(fetchProductsByCategory(category)),
 })
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(CategoryPage),
-)
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryPage)

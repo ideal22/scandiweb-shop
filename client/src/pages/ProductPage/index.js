@@ -9,6 +9,7 @@ import withRouter from '../../shared/withRouter'
 import {
   clearSelectedAttrs,
   setAddedProducts,
+  setIsProductAdded,
   setSelectedAttrs,
 } from '../../store/slices/addProductSlice'
 import { fetchProductById } from '../../store/slices/productByIdSlice'
@@ -48,7 +49,7 @@ class ProductPage extends React.Component {
       clearSelectedAttrs,
       setSelectedAttrs,
       selectedAttrs,
-      setAddedProducts,
+      addProduct,
     } = this.props
     return (
       <div className="product">
@@ -62,7 +63,7 @@ class ProductPage extends React.Component {
           selectedCurrency={selectedCurrency}
           clearSelectedAttrs={clearSelectedAttrs}
           selectedAttrs={selectedAttrs}
-          setAddedProducts={setAddedProducts}
+          addProduct={addProduct}
         >
           <ProductParams
             product={product}
@@ -88,7 +89,10 @@ const mapDispatchToProps = (dispatch) => ({
   fetchProductById: (id) => dispatch(fetchProductById(id)),
   setSelectedAttrs: (attrs) => dispatch(setSelectedAttrs(attrs)),
   clearSelectedAttrs: () => dispatch(clearSelectedAttrs()),
-  setAddedProducts: (product) => dispatch(setAddedProducts(product)),
+  addProduct: (product) => {
+    dispatch(setAddedProducts(product))
+    dispatch(setIsProductAdded(true))
+  },
 })
 
 export default withRouter(

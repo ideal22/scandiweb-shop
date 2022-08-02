@@ -3,6 +3,9 @@ import React, { Component } from 'react'
 const attrsSet = new Set()
 
 export default class ProductParams extends Component {
+  componentDidMount() {
+    attrsSet.clear()
+  }
   onSelectedAttrs = (attrs) => {
     attrsSet.add(attrs)
     this.props.setSelectedAttrs([...attrsSet])
@@ -11,7 +14,10 @@ export default class ProductParams extends Component {
     const { product, selectedAttrs } = this.props
 
     return (
-      <div className="product__params">
+      <div
+        className="product__params"
+        style={!product.inStock ? { pointerEvents: 'none', opacity: 0.7 } : {}}
+      >
         {product.attributes &&
           product.attributes.length &&
           product.attributes.map((attribute, idx) => {

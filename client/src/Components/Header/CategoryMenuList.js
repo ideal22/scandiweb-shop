@@ -25,7 +25,7 @@ class CategoriesMenuList extends Component {
               key={category.name}
             >
               <Link
-                to={`${category.name}`}
+                to="/"
                 onClick={() => this.props.setSelectedCategory(category.name)}
               >
                 {CATEGORIES[category.name]}

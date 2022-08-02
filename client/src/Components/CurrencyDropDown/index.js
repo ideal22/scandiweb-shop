@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import arrowIcon from '../../assets/arrow.png'
+import { getTotalAmount } from '../../store/slices/addProductSlice'
 import {
   fetchCurrencies,
   setSelectedCurrency,
@@ -55,9 +56,7 @@ class CurrencyDropDown extends Component {
             return (
               <li
                 key={currency.label}
-                onClick={() => {
-                  setSelectedCurrency(currency)
-                }}
+                onClick={() => setSelectedCurrency(currency)}
               >
                 {currency.symbol} {currency.label}
               </li>
@@ -76,7 +75,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchCurrencies: () => dispatch(fetchCurrencies()),
-  setSelectedCurrency: (curr) => dispatch(setSelectedCurrency(curr)),
+  setSelectedCurrency: (curr) => {
+    dispatch(setSelectedCurrency(curr))
+    dispatch(getTotalAmount(curr.label))
+  },
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CurrencyDropDown)

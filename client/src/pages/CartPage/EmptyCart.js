@@ -7,8 +7,8 @@ export default class EmptyCart extends Component {
       <div className="cart">
         <div className="cart__empty">
           <p>Your Cart is Empty!</p>
-          <Link to="/all">
-            <button>Home</button>
+          <Link to="/">
+            <button>Go Back</button>
           </Link>
         </div>
       </div>

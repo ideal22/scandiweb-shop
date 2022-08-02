@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import headerCheckout from '../../assets/header-checkout-icon.png'
-import withRouter from '../../shared/withRouter'
 import CartModal from '../CartModal'
 import CategoryMenuList from './CategoryMenuList'
 import CurrencyDropDown from '../CurrencyDropDown'
@@ -14,7 +13,7 @@ class Header extends React.Component {
         <div className="nav__container">
           <CategoryMenuList history={this.props.history} />
           <div className="nav__checkout">
-            <Link to="/">
+            <Link to="/cart-page">
               <img src={headerCheckout} alt="" />
             </Link>
           </div>
@@ -32,4 +31,4 @@ const mapStateToProps = (state) => ({
   isModalOpened: state.modal.isModalOpened,
 })
 
-export default withRouter(connect(mapStateToProps, null)(Header))
+export default connect(mapStateToProps, null)(Header)

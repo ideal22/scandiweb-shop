@@ -1,4 +1,4 @@
-import { Routes as Swith, Route, Navigate } from 'react-router-dom'
+import { Routes as Swith, Route } from 'react-router-dom'
 import Layout from './Components/Layout'
 import CartPage from './pages/CartPage'
 import CategoryPage from './pages/CategoryPage'
@@ -8,8 +8,7 @@ const AppRoutes = () => {
   return (
     <Swith>
       <Route path="/" element={<Layout />}>
-        <Route path=":category" element={<CategoryPage />} />
-        <Route path="/" element={<Navigate to="all" />} />
+        <Route path="/" element={<CategoryPage />} />
         <Route path="cart-page" element={<CartPage />} />
         <Route path="product-page/:id" element={<ProductPage />} />
       </Route>

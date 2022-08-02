@@ -4,7 +4,7 @@ import ProductCategoryListItem from './ProductCategoryListItem'
 
 class ProductCategoryList extends Component {
   render() {
-    const { products, selectedCurrency } = this.props
+    const { products, selectedCurrency, selectedAttrs } = this.props
     return (
       <div className="home__products">
         {products.map((product) => (
@@ -12,6 +12,7 @@ class ProductCategoryList extends Component {
             key={product.id}
             product={product}
             selectedCurrency={selectedCurrency}
+            selectedAttrs={selectedAttrs}
           />
         ))}
       </div>
@@ -21,6 +22,7 @@ class ProductCategoryList extends Component {
 const mapStateToProps = (state) => ({
   products: state.products.products,
   selectedCurrency: state.currencies.selectedCurrency,
+  selectedAttrs: state.addedProducts.selectedAttrs,
 })
 
 export default connect(mapStateToProps)(ProductCategoryList)

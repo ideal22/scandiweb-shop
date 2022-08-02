@@ -1,25 +1,30 @@
 export const getPriceByAmount = (prices, currency) =>
-  prices !== undefined &&
+  // prices !== undefined &&
   prices.find(({ currency: { label } }) => label === currency).amount
 
-const getDefaultProductAttrs = (attrs) =>
-  attrs.map((attr) => ({
+const getDefaultProductAttrs = (attrs) => {
+  console.log(attrs, 'attrs')
+  return attrs.map((attr) => ({
     attributeName: attr.name,
     attributeItemValue: attr.items[0].value,
   }))
+}
 
-const getId = (id, name) => {
-  return `${id}-${name}`
+const getId = (id, selectedAttrs) => {
+  const attrsStr = selectedAttrs.map((attr) => attr.attributeItemValue).sort()
+  return `${id}-${attrsStr.join('-')}`
 }
 
 export const generateProductDataToAdd = (product, selectedAttrs) => ({
-  productId: !selectedAttrs ? product.id : getId(product.id, product.name),
+  productId: !selectedAttrs?.length
+    ? product.id
+    : getId(product.id, selectedAttrs),
   productName: product.name,
   productBrand: product.brand,
   productCount: product.count,
   productGallery: product.gallery,
   productPrices: product.prices,
-  productAttrs: !selectedAttrs
+  productAttrs: !selectedAttrs?.length
     ? getDefaultProductAttrs(product.attributes)
     : selectedAttrs,
 })

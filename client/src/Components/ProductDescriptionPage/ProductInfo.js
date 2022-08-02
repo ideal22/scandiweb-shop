@@ -4,11 +4,17 @@ import { generateProductDataToAdd } from '../../shared/helper'
 
 export default class ProductInfo extends Component {
   addProduct = () => {
+    if (
+      this.props.product.attributes.length &&
+      !this.props.selectedAttrs.length
+    ) {
+      return alert('Please Select Attributes!')
+    }
     const data = generateProductDataToAdd(
       this.props.product,
       this.props.selectedAttrs,
     )
-    this.props.setAddedProducts(data)
+    this.props.addProduct(data)
   }
   render() {
     const { product, children } = this.props
