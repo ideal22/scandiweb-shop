@@ -23,6 +23,7 @@ export default class ProductOrder extends Component {
             {`${totalAmount.toFixed(2)} ${selectedCurrency.symbol}`}
           </span>
         </p>
+        <button className="order-btn">Order</button>
       </div>
     )
   }
