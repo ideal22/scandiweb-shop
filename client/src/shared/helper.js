@@ -1,9 +1,8 @@
 export const getPriceByAmount = (prices, currency) =>
-  // prices !== undefined &&
+  prices !== undefined &&
   prices.find(({ currency: { label } }) => label === currency).amount
 
 const getDefaultProductAttrs = (attrs) => {
-  console.log(attrs, 'attrs')
   return attrs.map((attr) => ({
     attributeName: attr.name,
     attributeItemValue: attr.items[0].value,
