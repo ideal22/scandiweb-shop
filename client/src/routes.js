@@ -1,20 +1,21 @@
 import CartPage from './pages/CartPage'
 import CategoryPage from './pages/CategoryPage'
 import ProductPage from './pages/ProductPage'
+import { ROUTES } from './shared/constants'
 
 export const routes = [
   {
-    path: 'categories/:category',
+    path: ROUTES.categoryPage,
     isIndex: true,
     Element: CategoryPage,
   },
   {
-    path: 'product-page',
+    path: ROUTES.productPage,
     isIndex: false,
     Element: ProductPage,
   },
   {
-    path: 'cart-page',
+    path: ROUTES.cartPage,
     isIndex: false,
     Element: CartPage,
   },
