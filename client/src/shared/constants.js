@@ -12,3 +12,5 @@ export const ROUTES = {
 
 export const CHECKOUT_MESSAGE =
   'Your order has been reveived. Thanks for your purchase!😍'
+
+export const CONFIRM_MESSAGE = 'Are you sure to continue?'

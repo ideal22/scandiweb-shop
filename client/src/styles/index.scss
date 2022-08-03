@@ -242,12 +242,6 @@ code {
 
 }
 
-.spinner {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translateX(-50%) translateY(-50%)
-}
 
 .error-boundary {
   height: 100vh;
@@ -285,8 +279,8 @@ code {
 
 
 
-@import "nav";
-@import "home";
-@import "product-block";
+@import "header";
+@import "category-page";
+@import "cart-modal";
 @import "product-page";
 @import "cart-page";

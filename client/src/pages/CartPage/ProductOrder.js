@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
-import { CHECKOUT_MESSAGE } from '../../shared/constants'
+import { CHECKOUT_MESSAGE, CONFIRM_MESSAGE } from '../../shared/constants'
 
 const taxPercentage = 0.21
 
 export default class ProductOrder extends Component {
   onCheckout = () => {
-    this.props.checkout()
-    alert(CHECKOUT_MESSAGE)
+    const isConfirmed = window.confirm(CONFIRM_MESSAGE)
+    if (isConfirmed) {
+      this.props.checkout()
+      alert(CHECKOUT_MESSAGE)
+    }
   }
   render() {
     const { totalCount, selectedCurrency, totalAmount } = this.props

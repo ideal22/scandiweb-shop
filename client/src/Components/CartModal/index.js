@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import CartIcon from '../../assets/CartIcon'
-import { CHECKOUT_MESSAGE } from '../../shared/constants'
+import { CHECKOUT_MESSAGE, CONFIRM_MESSAGE } from '../../shared/constants'
 import { checkout } from '../../store/slices/addProductSlice'
 import { toggleModal } from '../../store/slices/modalSlice'
 import CartModalProductList from './CartModalProductList'
@@ -28,8 +28,11 @@ class CartModal extends Component {
   }
 
   onCheckout = () => {
-    this.props.checkout()
-    alert(CHECKOUT_MESSAGE)
+    const isConfirmed = window.confirm(CONFIRM_MESSAGE)
+    if (isConfirmed) {
+      this.props.checkout()
+      alert(CHECKOUT_MESSAGE)
+    }
   }
 
   render() {
