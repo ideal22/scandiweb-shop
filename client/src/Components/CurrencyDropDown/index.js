@@ -42,7 +42,7 @@ class CurrencyDropDown extends Component {
       >
         <div
           className={`nav__currency-label ${
-            this.props.toggleCurrencyBlock ? 'active' : ''
+            this.state.isDropDownOpened ? 'active' : ''
           }`}
         >
           {selectedCurrency.symbol} <img src={arrowIcon} alt="" />
@@ -57,6 +57,9 @@ class CurrencyDropDown extends Component {
               <li
                 key={currency.label}
                 onClick={() => setSelectedCurrency(currency)}
+                className={
+                  selectedCurrency.label === currency.label ? 'active' : ''
+                }
               >
                 {currency.symbol} {currency.label}
               </li>
