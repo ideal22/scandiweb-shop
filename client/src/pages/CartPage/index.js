@@ -1,13 +1,19 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import AddedProductListItemDetails from '../../Components/AddedProductListItemDetails'
+import { checkout } from '../../store/slices/addProductSlice'
 import EmptyCart from './EmptyCart'
 import ProductOrder from './ProductOrder'
 
 class CartPage extends React.Component {
   render() {
-    const { addedProducts, selectedCurrency, totalCount, totalAmount } =
-      this.props
+    const {
+      addedProducts,
+      selectedCurrency,
+      totalCount,
+      totalAmount,
+      checkout,
+    } = this.props
     if (!totalCount) return <EmptyCart />
     return (
       <div className="cart">
@@ -25,6 +31,7 @@ class CartPage extends React.Component {
           totalCount={totalCount}
           totalAmount={totalAmount}
           selectedCurrency={selectedCurrency}
+          checkout={checkout}
         />
       </div>
     )
@@ -38,4 +45,8 @@ const mapStateToProps = (state) => ({
   totalAmount: state.addedProducts.totalAmount,
 })
 
-export default connect(mapStateToProps, null)(CartPage)
+const mapDispatchToProps = (dispatch) => ({
+  checkout: () => dispatch(checkout()),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartPage)

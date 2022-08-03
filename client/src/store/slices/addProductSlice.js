@@ -76,6 +76,12 @@ const addProductSlice = createSlice({
     clearSelectedAttrs(state) {
       state.selectedAttrs = []
     },
+
+    checkout(state) {
+      state.addedProducts = []
+      state.totalAmount = 0
+      state.totalCount = 0
+    },
   },
 })
 
@@ -89,5 +95,6 @@ export const {
   setIsProductAdded,
   setSelectedAttrs,
   clearSelectedAttrs,
+  checkout,
 } = addProductSlice.actions
 export default addProductSlice.reducer

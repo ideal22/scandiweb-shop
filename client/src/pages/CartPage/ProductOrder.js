@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
+import { CHECKOUT_MESSAGE } from '../../shared/constants'
 
 const taxPercentage = 0.21
 
 export default class ProductOrder extends Component {
+  onCheckout = () => {
+    this.props.checkout()
+    alert(CHECKOUT_MESSAGE)
+  }
   render() {
     const { totalCount, selectedCurrency, totalAmount } = this.props
     const tax = totalAmount * taxPercentage
@@ -23,7 +28,9 @@ export default class ProductOrder extends Component {
             {`${totalAmount.toFixed(2)} ${selectedCurrency.symbol}`}
           </span>
         </p>
-        <button className="order-btn">Order</button>
+        <button className="order-btn" onClick={this.onCheckout}>
+          Order
+        </button>
       </div>
     )
   }

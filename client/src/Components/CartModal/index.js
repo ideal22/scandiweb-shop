@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import CartIcon from '../../assets/CartIcon'
+import { CHECKOUT_MESSAGE } from '../../shared/constants'
+import { checkout } from '../../store/slices/addProductSlice'
 import { toggleModal } from '../../store/slices/modalSlice'
 import CartModalProductList from './CartModalProductList'
 
@@ -23,6 +25,11 @@ class CartModal extends Component {
   }
   handleOutsideClick = (e) => {
     if (!e.path.includes(this.modaRef.current)) this.toggleModal()
+  }
+
+  onCheckout = () => {
+    this.props.checkout()
+    alert(CHECKOUT_MESSAGE)
   }
 
   render() {
@@ -64,7 +71,7 @@ class CartModal extends Component {
               </Link>
               <button
                 className="btn primary"
-                // onClick={onCheckout}
+                onClick={this.onCheckout}
                 disabled={totalCount ? false : true}
               >
                 Check out
@@ -85,6 +92,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   toggleModal: () => dispatch(toggleModal()),
+  checkout: () => dispatch(checkout()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartModal)
