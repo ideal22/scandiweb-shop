@@ -278,6 +278,12 @@ code {
   }
   details {
     cursor: pointer;
+    white-space: pre-wrap;
+  }
+  button {
+    padding: 10px;
+    width: 100px;
+    margin-top: 10px;
   }
 }
 

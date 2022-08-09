@@ -51,7 +51,7 @@ class CartModal extends Component {
           }`}
         >
           <h5>
-            My Bag, <span style={{ marginLeft: 5 }}>{totalCount} items</span>
+            My Bag, <span>{totalCount} items</span>
           </h5>
           <CartModalProductList />
           <div className="cart__total">

@@ -36,16 +36,12 @@ class ErrorBoundary extends React.Component {
       return (
         <div className="error-boundary">
           <h2>Something went wrong!</h2>
-          <details style={{ whiteSpace: 'pre-wrap' }}>
+          <details>
             <pre>{this.state.error && this.state.error.toString()}</pre>
             <br />
             <pre>{this.state.errorInfo?.componentStack}</pre>
           </details>
-          <button
-            style={{ padding: 10, width: 100, marginTop: 10 }}
-            className="btn primary"
-            onClick={this.refreshPage}
-          >
+          <button className="btn primary" onClick={this.refreshPage}>
             Try Again
           </button>
         </div>

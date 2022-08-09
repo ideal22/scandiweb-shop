@@ -15,8 +15,9 @@ export default class ProductParams extends Component {
 
     return (
       <div
-        className="product__params"
-        style={!product.inStock ? { pointerEvents: 'none', opacity: 0.7 } : {}}
+        className={`product__params ${
+          !product.inStock ? 'product__params-disable' : ''
+        }`}
       >
         {product.attributes &&
           product.attributes.length &&
@@ -56,7 +57,7 @@ export default class ProductParams extends Component {
                         <button
                           style={{
                             backgroundColor: item.value,
-                          }}
+                          }} // here I should use style prop
                           className={`swatch-btn $ ${
                             selectedAttrs.some(
                               (attr) =>

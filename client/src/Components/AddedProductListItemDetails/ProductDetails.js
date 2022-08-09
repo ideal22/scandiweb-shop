@@ -28,7 +28,7 @@ export default class ProductDetails extends Component {
                 ) : (
                   <span
                     className="color"
-                    style={{ backgroundColor: attributeItemValue }}
+                    style={{ backgroundColor: attributeItemValue }} // I should use style prop here
                   ></span>
                 )}
               </li>
