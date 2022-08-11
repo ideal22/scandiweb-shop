@@ -44,8 +44,8 @@
         position: relative;
         padding: 20px 0;
         margin-bottom: 0;
-
         .remove-btn {
+            z-index: 1000;
             top: 15px;
             transform: scale(1.1);
         }
@@ -149,5 +149,22 @@
     font-size: 14px;
     cursor: pointer;
     margin-top: 8px;
+  }
+}
+
+.img-slider {
+  position: absolute;
+  bottom: 10px;
+  right: 30px;
+  display: flex;
+
+  img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    cursor: pointer;
+  }
+  img + img {
+    margin-left: 5px;
   }
 }

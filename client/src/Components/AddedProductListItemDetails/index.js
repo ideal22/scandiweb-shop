@@ -8,12 +8,20 @@ import {
   increaseProductCount,
 } from '../../store/slices/addProductSlice'
 import { connect } from 'react-redux'
+import ImageSlider from '../ImageSlider'
 
 class AddedProductListItemDetails extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      imgSliderIndex: 0,
+    }
+  }
   componentDidMount() {
     const { getTotalAmount, getTotalCount, selectedCurrency } = this.props
     getTotalCount()
     getTotalAmount(selectedCurrency.label)
+    this.setState({ imgSliderIndex: 0 })
   }
 
   componentDidUpdate(prevProps) {
@@ -24,6 +32,27 @@ class AddedProductListItemDetails extends Component {
       getTotalAmount(selectedCurrency.label)
     }
   }
+
+  next = () => {
+    if (
+      this.state.imgSliderIndex ===
+      this.props.product.productGallery.length - 1
+    ) {
+      this.setState({ imgSliderIndex: 0 })
+    } else {
+      this.setState({ imgSliderIndex: this.state.imgSliderIndex + 1 })
+    }
+  }
+
+  prev = () => {
+    if (this.state.imgSliderIndex === 0) {
+      this.setState({
+        imgSliderIndex: this.props.product.productGallery.length - 1,
+      })
+    } else {
+      this.setState({ imgSliderIndex: this.state.imgSliderIndex - 1 })
+    }
+  }
   render() {
     const {
       product,
@@ -31,6 +60,7 @@ class AddedProductListItemDetails extends Component {
       increaseProduct,
       decreaseProduct,
       deleteProduct,
+      isModalOpened,
     } = this.props
     return (
       <div className="cart__item">
@@ -65,14 +95,26 @@ class AddedProductListItemDetails extends Component {
               -
             </button>
           </div>
-          <div className="item__img">
-            <img src={product.productGallery[0]} alt="" />
+          <div
+            className={`item__img ${!isModalOpened ? 'item__img-slider' : ''}`}
+          >
+            <img
+              src={product.productGallery[this.state.imgSliderIndex]}
+              alt=""
+            />
+            {!isModalOpened && (
+              <ImageSlider prev={this.prev} next={this.next} />
+            )}
           </div>
         </div>
       </div>
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+  isModalOpened: state.modal.isModalOpened,
+})
 
 const mapDispatchToProps = (dispatch, { selectedCurrency: { label } }) => ({
   deleteProduct: (id) => {
@@ -86,4 +128,7 @@ const mapDispatchToProps = (dispatch, { selectedCurrency: { label } }) => ({
   getTotalAmount: (currency) => dispatch(getTotalAmount(currency)),
 })
 
-export default connect(null, mapDispatchToProps)(AddedProductListItemDetails)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(AddedProductListItemDetails)

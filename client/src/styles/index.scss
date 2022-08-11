@@ -129,6 +129,7 @@ code {
     cursor: pointer;
     transition: .3s;
     opacity: 0;
+    z-index: 10000;
 
     &:hover {
       color: $white;
@@ -238,6 +239,14 @@ code {
         width: 100%;
         max-height: 150px;
         object-fit: contain
+      }
+    }
+
+    .item__img-slider {
+      position: relative;
+      width: 200px;
+      img {
+        max-height: 250px;
       }
     }
   }
