@@ -5,6 +5,7 @@ import ProductInfo from '../../Components/ProductDescriptionPage/ProductInfo'
 import ProductParams from '../../Components/ProductDescriptionPage/ProductParams'
 import ProductPrice from '../../Components/ProductDescriptionPage/ProductPrice'
 import ProductThumbs from '../../Components/ProductDescriptionPage/ProductThumbs'
+import { lockScroll, unLockScroll } from '../../shared/helper'
 import withRouter from '../../shared/withRouter'
 import {
   clearSelectedAttrs,
@@ -27,10 +28,12 @@ class ProductPage extends React.Component {
       fetchProductById,
     } = this.props
     fetchProductById(params.id)
+    lockScroll()
   }
 
   componentWillUnmount() {
     this.props.clearSelectedAttrs()
+    unLockScroll()
   }
 
   isThumbSelected = () =>

@@ -27,3 +27,11 @@ export const generateProductDataToAdd = (product, selectedAttrs) => ({
     ? getDefaultProductAttrs(product.attributes)
     : selectedAttrs,
 })
+
+export const lockScroll = () => {
+  document.body.classList.add('hide-scroll')
+}
+
+export const unLockScroll = () => {
+  document.body.classList.remove('hide-scroll')
+}

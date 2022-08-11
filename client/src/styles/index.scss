@@ -7,7 +7,6 @@
 }
 
 ul {
-
   list-style: none;
 }
 
@@ -51,6 +50,8 @@ body {
     background: #888;
     border-radius: 5px;
   }
+
+
 }
 
 code {
@@ -64,6 +65,8 @@ code {
   margin: 0 auto;
   padding: 0 100px;
 }
+
+
 
 .row {
   display: flex;
@@ -303,6 +306,16 @@ code {
     color: #fff;
     cursor: pointer;
     margin-top: 30px
+  }
+}
+
+.hide-scroll {
+  overflow: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
 
