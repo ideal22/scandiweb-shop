@@ -119,10 +119,8 @@
                 transition: .3s;
                 border: 2px solid transparent;
                 margin-bottom: 10px;
-
                 &.selected {
-                    border: 2px solid red;
-
+                    border: 2px solid #5ECE7B;
                 }
 
                 &:hover {
