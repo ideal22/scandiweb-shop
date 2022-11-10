@@ -6,6 +6,7 @@ import AddedProductListItemDetails from '../AddedProductListItemDetails'
 
 class CartModalProductList extends Component {
   render() {
+    console.log('test')
     const { addedProducts, selectedCurrency } = this.props
     return (
       <div className="cart__items">
